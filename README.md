@@ -1,102 +1,287 @@
 # Recovery Road
 
-A web platform for **substance-use recovery support**, connecting **patients**, **supervisors** (care navigators), **administrators**, and **NGO** partners. It combines guided patient tools, supervisor oversight, real-time communication, and optional machine-learning insights in a single full-stack application.
+Recovery Road is an AI-powered MERN-based recovery support platform designed to help patients recovering from substance-use addiction through emotional monitoring, relapse-risk analysis, supervisor support, and intelligent conversational assistance.
+
+The platform connects:
+
+* Patients
+* Supervisors
+* Administrators
+* NGO partners
+
+through a centralized web-based healthcare support system.
+
+Recovery Road combines:
+
+* Machine Learning
+* NLP-based emotional analysis
+* Conversational AI
+* Facial emotion recognition
+* Real-time supervisor escalation
+* Behavioral tracking
+
+within a scalable microservice architecture.
 
 ---
 
-## Overview
+# Project Objective
 
-Recovery Road helps teams deliver structured recovery programs online. Patients access education, mood and activity tracking, goals, appointments, peer-style messaging, and engaging activities. Supervisors and organizations monitor progress, alerts, and engagement, with role-based access so each party sees what they need.
+The main objective of Recovery Road is to provide continuous recovery assistance and emotional support for patients outside traditional rehabilitation environments.
 
-The system is built for **local development** and **cloud deployment**: API URLs, Socket.IO, and CORS are driven by environment variables so the same codebase can run behind separate front-end and API hosts.
+The system helps:
 
----
+* monitor emotional condition,
+* detect relapse indicators,
+* provide recovery-focused interaction,
+* and notify supervisors during high-risk situations.
 
-## Capabilities
-
-### Patients
-
-- Dashboard with progress, mood trends, and wellness-oriented tools  
-- Mood logging, activity and relapse journaling, goals, and milestones  
-- Learning hub, games, mindfulness-style modules, and educational content  
-- Messaging, notifications, and **video calls** (WebRTC with Socket.IO signaling)  
-- Appointments and event participation  
-
-### Supervisors
-
-- Patient overviews, alerts, goals management, and communication hub  
-- AI-assisted or rule-based insights where configured (mood scans, chat context)  
-- Tools for assignments, daily logs, and relapse visibility  
-
-### Administrators & NGOs
-
-- **Admin** dashboard for system and user administration  
-- **NGO** dashboard for organization-scoped workflows  
-
-### Platform
-
-- **REST API** (Express) with **JWT** authentication and MongoDB persistence  
-- **Real-time** updates via Socket.IO (chat, calls, live features)  
-- Optional **Python ML microservice** (Flask) for classifiers used by the Node layer; can auto-start with the backend  
-- Responsive **React** UI (Vite, Tailwind), with code-splitting for route-based loading  
+The platform is designed as a supportive healthcare-adjacent monitoring system and does not replace medical professionals or therapists.
 
 ---
 
-## Tech stack
+# Core Features
 
-| Layer | Technologies |
-|-------|----------------|
-| Front end | React 18, React Router, Vite, Tailwind CSS, Chart.js / Recharts, Leaflet, Socket.IO client, WebRTC (`simple-peer`) |
-| Back end | Node.js, Express, Mongoose, Socket.IO, JWT, Nodemailer, optional OpenAI integrations |
-| Data | MongoDB |
-| ML (optional) | Python 3, Flask (`backend/ml_service`) |
+## Patient Features
+
+* AI-powered recovery support chatbot
+* Mood logging and emotional tracking
+* Relapse and craving tracking
+* Daily goals and milestone management
+* Educational recovery content
+* Wellness activities and engagement modules
+* Appointment scheduling
+* Notifications and messaging
+* Webcam-based AI mood scanning
+* Real-time communication and video calls
 
 ---
 
-## Repository layout
+## Supervisor Features
 
+* Patient monitoring dashboard
+* Real-time high-risk alerts
+* Chat monitoring and escalation visibility
+* AI-assisted emotional insights
+* Goal and recovery progress management
+* Activity and relapse visibility
+* Communication and support tools
+
+---
+
+## Administrator & NGO Features
+
+* User and role management
+* Organization-scoped monitoring
+* Dashboard analytics
+* Platform management controls
+
+---
+
+# AI & Machine Learning Architecture
+
+Recovery Road implements a multi-modal AI architecture combining:
+
+| AI Component         | Purpose                           |
+| -------------------- | --------------------------------- |
+| NLP Text Analysis    | Emotional and risk classification |
+| Behavioral ML        | Relapse-risk prediction           |
+| Computer Vision AI   | Facial emotion recognition        |
+| Conversational AI    | Supportive chatbot responses      |
+| Real-Time Escalation | Supervisor alert system           |
+
+---
+
+# AI/ML Components
+
+## 1. NLP Risk & Emotion Analysis
+
+The platform analyzes patient messages using Machine Learning and NLP techniques.
+
+### Features:
+
+* Risk classification (HIGH / MED / LOW)
+* Emotion detection
+* Emotional intensity estimation
+* Crisis keyword analysis
+
+### ML Pipeline:
+
+* Text preprocessing
+* TF-IDF vectorization
+* RandomForest classification
+* SVM emotion classification
+
+### Supported Emotions:
+
+* Anxiety
+* Sadness
+* Anger
+* Hope
+* Neutral
+
+---
+
+## 2. Behavioral Relapse Prediction
+
+The system predicts relapse risk using structured behavioral data.
+
+### Inputs:
+
+* Mood logs
+* Cravings
+* Trigger exposure
+* Activities
+* Recovery consistency
+
+### ML Models:
+
+* GradientBoostingClassifier
+* StandardScaler preprocessing
+
+---
+
+## 3. Facial Emotion Recognition
+
+Recovery Road includes webcam-based emotional analysis using DeepFace.
+
+### Flow:
+
+Frontend webcam capture
+→ Express backend upload
+→ Python FastAPI service
+→ DeepFace analysis
+→ Emotion prediction response
+
+### Purpose:
+
+* Detect emotional distress
+* Support mood monitoring
+* Enhance AI-assisted supervision
+
+---
+
+## 4. Conversational AI Chatbot
+
+The platform uses Groq API with:
+
+llama-3.3-70b-versatile
+
+to generate empathetic and recovery-focused responses.
+
+### Important Safety Architecture
+
+The chatbot does NOT directly control crisis handling.
+
+Instead:
+
+Patient Message
+→ ML Risk Analysis
+→ Safety Rules
+→ Supervisor Escalation
+→ Then Conversational AI
+
+### HIGH-Risk Messages:
+
+* bypass chatbot AI,
+* trigger supervisor alerts,
+* use crisis-safe templates.
+
+### LOW/MED Messages:
+
+* use conversational AI responses.
+
+This creates a safety-aware healthcare AI architecture.
+
+---
+
+# Real-Time Supervisor Escalation
+
+The system automatically creates alerts when:
+
+* overdose intent,
+* self-harm indicators,
+* severe emotional distress,
+* or relapse planning
+
+are detected.
+
+### Technologies Used:
+
+* Socket.IO
+* Real-time event broadcasting
+* MongoDB alert persistence
+
+---
+
+# Tech Stack
+
+| Layer             | Technologies                               |
+| ----------------- | ------------------------------------------ |
+| Frontend          | React.js, Vite, Tailwind CSS, React Router |
+| Backend           | Node.js, Express.js, JWT, Socket.IO        |
+| Database          | MongoDB, Mongoose                          |
+| AI/ML             | Python, scikit-learn, DeepFace             |
+| Conversational AI | Groq API                                   |
+| Visualization     | Recharts / Chart.js                        |
+| Real-Time         | Socket.IO                                  |
+| Video Calls       | WebRTC, simple-peer                        |
+
+---
+
+# System Architecture
+
+```text
+Frontend (React)
+        ↓
+Backend API (Node/Express)
+        ↓
+ML Microservices (Python)
+        ↓
+MongoDB Database
+        ↓
+Groq Conversational AI
 ```
-Recovery_Road-irfanswork/
-├── frontend/          # Vite + React SPA
-├── backend/           # Express API, Socket.IO, business logic
-├── backend/ml_service/# Flask ML API (optional)
-├── DEPLOYMENT.md      # Vercel + Render (and related) deployment steps
-└── README.md
+
+The platform follows a microservice-based architecture for modularity and scalability.
+
+---
+
+# Repository Structure
+
+```text
+Recovery_Road/
+├── frontend/                 # React frontend
+├── backend/                  # Express backend
+├── backend/ml_service/       # Python ML microservices
+├── README.md
+└── DEPLOYMENT.md
 ```
 
 ---
 
-## Prerequisites
+# Local Development Setup
 
-- **Node.js** (LTS recommended) and **npm**  
-- **MongoDB** (local or Atlas)  
-- **Python 3** and **pip** (only if you use the ML service, manually or via `AUTO_START_ML_SERVICE`)  
+# Prerequisites
+
+* Node.js (LTS recommended)
+* npm
+* MongoDB
+* Python 3
+* pip
 
 ---
 
-## Local development
-
-### 1. Backend
+# Backend Setup
 
 ```bash
 cd backend
 npm install
+npm run dev
 ```
 
-Create `backend/.env` using [Backend environment](#backend-environment). At minimum, set a valid `MONGO_URI` and a strong `JWT_SECRET`.
+---
 
-```bash
-npm run dev          # nodemon — hot reload
-# or
-npm start            # single node process
-```
-
-Optional maintenance scripts (see `backend/package.json`):
-
-- `npm run seed` — seed data  
-- `npm run clean-users` / `npm run clean-db` — cleanup utilities (use with care)  
-
-### 2. Front end
+# Frontend Setup
 
 ```bash
 cd frontend
@@ -104,71 +289,96 @@ npm install
 npm run dev
 ```
 
-For production assets:
+---
 
-```bash
-npm run build
-npm run preview       # local preview of the production build
-```
-
-### 3. ML service (optional)
-
-Install dependencies and run Flask, or enable `AUTO_START_ML_SERVICE` in `backend/.env` so the Node server starts `ml_service/app.py` when healthy checks fail.
+# Python ML Service Setup
 
 ```bash
 pip install -r backend/ml_service/requirements.txt
-# Typically listens on port 5001; align with ML_SERVICE_URL in backend .env
 python backend/ml_service/app.py
 ```
 
 ---
 
-## Production notes
+# Environment Variables
 
-- Set `NODE_ENV=production` and configure **CORS** using `FRONTEND_URL` and/or `ALLOWED_ORIGINS`.  
-- Build the front end (`npm run build` in `frontend/`), then either host the `dist` on a static host or enable `SERVE_FRONTEND` + `FRONTEND_DIST_PATH` on the API server (see env table).  
-- Use strong secrets and a managed MongoDB instance; never commit real `.env` files.  
-- **Deploying the frontend on Vercel and the API on Render:** step-by-step instructions are in [DEPLOYMENT.md](./DEPLOYMENT.md).  
+## Backend `.env`
 
----
+```env
+NODE_ENV=development
+PORT=5000
 
-## Backend environment
+MONGO_URI=your_mongodb_uri
 
-Create `backend/.env` (never commit real secrets). Sensible defaults for local dev where noted.
+JWT_SECRET=your_secret
 
-| Variable | Description |
-|----------|-------------|
-| `NODE_ENV` | `development` or `production` |
-| `PORT` | HTTP port (often `5000`) |
-| `MONGO_URI` | MongoDB connection string |
-| `JWT_SECRET` | Long random string for signing tokens |
-| `JWT_EXPIRE` | e.g. `7d` |
-| `FRONTEND_URL` | Production: primary front-end origin for CORS/realtime |
-| `ALLOWED_ORIGINS` | Comma-separated origins if multiple front ends are allowed |
-| `SERVE_FRONTEND` | `true` to serve the Vite build from this Node server |
-| `FRONTEND_DIST_PATH` | Absolute path to `frontend/dist` when `SERVE_FRONTEND=true` |
-| `AUTO_START_ML_SERVICE` | `true` / `false` — spawn `ml_service` from Node on startup |
-| `ML_SERVICE_URL` | Flask ML base URL (default `http://127.0.0.1:5001`) |
-| `ML_PYTHON` | Python executable (`python`, `py`, or full path; on Windows, `py` often works) |
-| `SMTP_HOST`, `SMTP_USER`, … | Optional email transport if configured in your deployment |
+FRONTEND_URL=http://localhost:5173
+
+ML_SERVICE_URL=http://127.0.0.1:5001
+
+CHAT_PROVIDER=GROQ
+GROQ_API_KEY=your_groq_api_key
+```
 
 ---
 
-## Frontend environment
+# Deployment Architecture
 
-Vite reads `VITE_*` from `.env`, `.env.local`, `.env.production`, etc. For a typical setup (API on the same site), you can leave these unset and rely on relative `/api` and the current origin for sockets.
-
-| Variable | Description |
-|----------|-------------|
-| `VITE_API_ORIGIN` | Base URL of the API when it lives on another domain |
-| `VITE_SOCKET_URL` | Socket.IO server URL (often the same as the API host) |
-| `VITE_DEV_PROXY_TARGET` | Dev only: backend URL for the Vite dev proxy (see `vite.config.js`) |
-| `VITE_DEV_PORT` | Dev only: port for the Vite dev server |
+| Component         | Platform      |
+| ----------------- | ------------- |
+| Frontend          | Vercel        |
+| Backend           | Render        |
+| ML Service        | Render        |
+| Database          | MongoDB Atlas |
+| Conversational AI | Groq API      |
 
 ---
 
-## Security
+# Production Notes
 
-- Treat `JWT_SECRET` and database credentials as production secrets.  
-- Rotate keys if they are ever exposed.  
-- Restrict CORS origins in production to known front-end URLs only.  
+* Keep API keys only on backend.
+* Never expose secrets to frontend.
+* Configure CORS properly.
+* Use MongoDB Atlas in production.
+* Deploy ML services separately from Node backend.
+
+---
+
+# Security
+
+Recovery Road implements:
+
+* JWT authentication
+* Role-based authorization
+* Protected API routes
+* Supervisor escalation safeguards
+* AI safety filtering
+* Crisis-aware chatbot logic
+
+---
+
+# Future Improvements
+
+Planned future enhancements include:
+
+* Transformer-based NLP models
+* BERT fine-tuning
+* Voice emotion analysis
+* Mobile application
+* Multi-frame facial emotion detection
+* Personalized AI recommendations
+* Cloud GPU inference
+
+---
+
+# Final Summary
+
+Recovery Road is a multi-modal AI-powered recovery support platform that combines:
+
+* NLP,
+* machine learning,
+* computer vision,
+* conversational AI,
+* and real-time supervisor escalation
+
+through a MERN microservice architecture to support addiction recovery in a safer and more scalable way.
